@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check if the authenticated user is the designated admin
+    function isAdmin() {
+      return request.auth != null && request.auth.uid == 'v4UAmpF7uzVeDYTlXl6GzzYRNpN2';
+    }
+
+    match /config/{configId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /services/{serviceId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /works/{workId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /customPages/{pageId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /team/{memberId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /gallery/{itemId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

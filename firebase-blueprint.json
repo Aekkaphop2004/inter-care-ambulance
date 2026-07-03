@@ -1,0 +1,136 @@
+{
+  "entities": {
+    "CompanyConfig": {
+      "title": "Company Configuration",
+      "description": "General settings and details for Inter Care Ambulance",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Company name in Thai" },
+        "tagline": { "type": "string", "description": "Slogan or catchphrase" },
+        "description": { "type": "string", "description": "Detailed about us text" },
+        "emergencyPhone": { "type": "string", "description": "Emergency hotlines" },
+        "contactPhone": { "type": "string", "description": "General inquiry phone" },
+        "lineId": { "type": "string", "description": "Line official account ID" },
+        "facebookUrl": { "type": "string", "description": "Facebook Page URL" },
+        "address": { "type": "string", "description": "Physical headquarters address" },
+        "profileImageUrl": { "type": "string", "description": "Profile/Brand image URL" },
+        "heroBgType": { "type": "string", "description": "Hero section background type: color, image, gradient" },
+        "heroBgVal": { "type": "string", "description": "Hero section background value" },
+        "servicesBgType": { "type": "string", "description": "Services section background type" },
+        "servicesBgVal": { "type": "string", "description": "Services section background value" },
+        "aboutBgType": { "type": "string", "description": "About section background type" },
+        "aboutBgVal": { "type": "string", "description": "About section background value" },
+        "portfolioBgType": { "type": "string", "description": "Portfolio section background type" },
+        "portfolioBgVal": { "type": "string", "description": "Portfolio section background value" },
+        "contactBgType": { "type": "string", "description": "Contact section background type" },
+        "contactBgVal": { "type": "string", "description": "Contact section background value" },
+        "directorName": { "type": "string", "description": "Director / consultant name" },
+        "directorTitle": { "type": "string", "description": "Director / consultant position title" },
+        "directorQuote": { "type": "string", "description": "Director / consultant quote / statement" }
+      },
+      "required": ["title", "tagline", "description", "emergencyPhone", "contactPhone"]
+    },
+    "Service": {
+      "title": "Ambulance Service",
+      "description": "A medical transport or standby service offered by Inter Care",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Service name" },
+        "description": { "type": "string", "description": "Service details and capabilities" },
+        "iconName": { "type": "string", "description": "Lucide icon name to display" },
+        "order": { "type": "number", "description": "Display sort order" }
+      },
+      "required": ["title", "description", "iconName", "order"]
+    },
+    "Work": {
+      "title": "Portfolio Work",
+      "description": "A successful mission, standby event, or patient transfer case",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Event or mission title" },
+        "description": { "type": "string", "description": "Description of the medical team's role and outcome" },
+        "date": { "type": "string", "description": "Date of the event" },
+        "category": { "type": "string", "description": "Category: Event Standby, Emergency Transfer, ICU Transfer, etc." },
+        "location": { "type": "string", "description": "Location or venue" },
+        "imageUrl": { "type": "string", "description": "URL or description of the image" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" }
+      },
+      "required": ["title", "description", "date", "category", "location"]
+    },
+    "CustomPage": {
+      "title": "Custom Dynamic Page",
+      "description": "An additional dynamic page or section added by the administrator",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "tagline": { "type": "string" },
+        "content": { "type": "string" },
+        "order": { "type": "number" },
+        "bgType": { "type": "string" },
+        "bgVal": { "type": "string" },
+        "textColor": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "layout": { "type": "string" },
+        "inMenu": { "type": "boolean" },
+        "slug": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "content", "order", "slug"]
+    },
+    "TeamMember": {
+      "title": "Team Member",
+      "description": "A staff member or executive at Inter Care Ambulance",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Full name in Thai" },
+        "role": { "type": "string", "description": "Job title or role" },
+        "description": { "type": "string", "description": "Bio or description" },
+        "imageUrl": { "type": "string", "description": "Profile picture URL" },
+        "order": { "type": "number", "description": "Sort order" }
+      },
+      "required": ["name", "role", "order"]
+    },
+    "GalleryItem": {
+      "title": "Gallery Item",
+      "description": "An image or photo in the media library / gallery",
+      "type": "object",
+      "properties": {
+        "url": { "type": "string", "description": "Image file URL" },
+        "title": { "type": "string", "description": "Caption or title for the image" },
+        "category": { "type": "string", "description": "Category group" },
+        "description": { "type": "string", "description": "Optional description" },
+        "date": { "type": "string", "description": "Optional date" },
+        "location": { "type": "string", "description": "Optional location" },
+        "order": { "type": "number", "description": "Sort order" }
+      },
+      "required": ["url", "title", "category", "order"]
+    }
+  },
+  "firestore": {
+    "config/company": {
+      "schema": { "$ref": "#/entities/CompanyConfig" },
+      "description": "Singleton configuration for general page copy and contact info"
+    },
+    "services/{serviceId}": {
+      "schema": { "$ref": "#/entities/Service" },
+      "description": "Collection of ambulance services"
+    },
+    "works/{workId}": {
+      "schema": { "$ref": "#/entities/Work" },
+      "description": "Collection of past works and standby records"
+    },
+    "customPages/{pageId}": {
+      "schema": { "$ref": "#/entities/CustomPage" },
+      "description": "Dynamic custom pages or sections"
+    },
+    "team/{memberId}": {
+      "schema": { "$ref": "#/entities/TeamMember" },
+      "description": "Collection of company team members"
+    },
+    "gallery/{itemId}": {
+      "schema": { "$ref": "#/entities/GalleryItem" },
+      "description": "Collection of gallery images and media"
+    }
+  }
+}

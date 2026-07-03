@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Inter Care Ambulance CMS \u0026 Website",
+  "description": "Headless CMS and modern frontend for Inter Care Ambulance services, portfolio of medical transport works, and contact details.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
